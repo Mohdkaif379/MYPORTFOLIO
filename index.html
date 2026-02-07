@@ -1,0 +1,831 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Backend Developer Portfolio</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            midnight: "#0a1126",
+            ocean: "#12204a",
+            azure: "#2f6df6",
+            mist: "#eef3ff",
+            steel: "#9bb0d6",
+          },
+          fontFamily: {
+            display: ["IBM Plex Serif", "ui-serif", "serif"],
+            body: ["Space Grotesk", "ui-sans-serif", "system-ui"],
+          },
+          backgroundImage: {
+            grid: "radial-gradient(circle at 1px 1px, rgba(238,243,255,0.07) 1px, transparent 0)",
+          },
+        },
+      },
+    };
+  </script>
+  <link
+    href="https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:wght@400;600;700&family=Space+Grotesk:wght@400;500;600&display=swap"
+    rel="stylesheet" />
+  <style>
+    :root {
+      --bg1: #0a1126;
+      --bg2: #12204a;
+      --bg3: #1b2a5c;
+    }
+
+    .animated-bg {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      background:
+        radial-gradient(1200px circle at 10% 20%,
+          rgba(47, 109, 246, 0.18),
+          transparent 40%),
+        radial-gradient(900px circle at 90% 80%,
+          rgba(155, 176, 214, 0.15),
+          transparent 45%),
+        linear-gradient(180deg, var(--bg1), var(--bg2) 55%, var(--bg3));
+      overflow: hidden;
+    }
+
+    body.bg-photo {
+      background-image:
+        linear-gradient(180deg, #020617 0%, #172554 50%, #020617 100%),
+        url("profile.png");
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      background-repeat: no-repeat;
+    }
+
+    body.bg-photo::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background: linear-gradient(180deg,
+          rgba(8, 15, 34, 0.35),
+          rgba(10, 17, 38, 0.2) 45%,
+          rgba(10, 17, 38, 0.45));
+      z-index: 0;
+    }
+
+    .blob {
+      position: absolute;
+      width: 45vw;
+      height: 45vw;
+      max-width: 520px;
+      max-height: 520px;
+      background: radial-gradient(circle at 30% 30%,
+          rgba(47, 109, 246, 0.35),
+          transparent 60%);
+      filter: blur(8px);
+      opacity: 0.8;
+      animation: float 18s ease-in-out infinite;
+    }
+
+    .blob.b2 {
+      width: 35vw;
+      height: 35vw;
+      max-width: 420px;
+      max-height: 420px;
+      background: radial-gradient(circle at 40% 40%,
+          rgba(155, 176, 214, 0.28),
+          transparent 60%);
+      animation-delay: -6s;
+    }
+
+    .blob.b3 {
+      width: 28vw;
+      height: 28vw;
+      max-width: 360px;
+      max-height: 360px;
+      background: radial-gradient(circle at 60% 40%,
+          rgba(47, 109, 246, 0.22),
+          transparent 60%);
+      animation-delay: -12s;
+    }
+
+    @keyframes float {
+      0% {
+        transform: translate(0, 0) scale(1);
+      }
+
+      33% {
+        transform: translate(6vw, -4vw) scale(1.05);
+      }
+
+      66% {
+        transform: translate(-4vw, 6vw) scale(0.98);
+      }
+
+      100% {
+        transform: translate(0, 0) scale(1);
+      }
+    }
+  </style>
+</head>
+
+<body class="bg-photo bg-gradient-to-b from-slate-950 via-blue-950 to-slate-950 text-mist font-body">
+  <div class="relative z-10 min-h-screen bg-grid bg-[size:32px_32px]">
+    <header class="fixed top-0 left-0 right-0 z-50 bg-gradient-to-b from-slate-950 via-blue-950 to-slate-950 py-6">
+      <nav class="max-w-6xl mx-auto px-6 flex items-center justify-between">
+        <button id="mobile-menu-btn" class="md:hidden text-white text-2xl" aria-label="Open menu">
+          <i class="fas fa-bars"></i>
+        </button>
+        <div class="hidden md:flex gap-6 text-sm uppercase tracking-[0.2em]">
+          <a class="hover:text-azure" href="#home">Home</a>
+          <a class="hover:text-azure" href="#about">About</a>
+          <a class="hover:text-azure" href="#projects">Work</a>
+          <a class="hover:text-azure" href="#skills">Stack</a>
+          <a class="hover:text-azure" href="#experience">Experience</a>
+          <a class="hover:text-azure" href="#education">Education</a>
+          <a class="hover:text-azure" href="#contact">Contact</a>
+        </div>
+        <div class="flex items-center gap-3">
+          <div
+            class="h-11 w-11 rounded-2xl bg-gradient-to-b from-slate-950 via-blue-900 to-blue-950 shadow-2xl text-white flex items-center justify-center font-semibold">
+            MK
+          </div>
+          <div>
+            <div class="text-sm uppercase tracking-[0.3em] font-semibold">
+              Mohd Kaif
+            </div>
+            <div class="text-xs text-white uppercase tracking-[0.2em]">
+              Backend Developer
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <div id="mobile-menu" class="fixed inset-0 bg-slate-950 bg-opacity-95 z-40 hidden flex flex-col items-center justify-center space-y-6 text-white text-lg uppercase tracking-[0.2em]">
+      <a href="#home" class="hover:text-azure">Home</a>
+      <a href="#about" class="hover:text-azure">About</a>
+      <a href="#projects" class="hover:text-azure">Work</a>
+      <a href="#skills" class="hover:text-azure">Stack</a>
+      <a href="#experience" class="hover:text-azure">Experience</a>
+      <a href="#education" class="hover:text-azure">Education</a>
+      <a href="#contact" class="hover:text-azure">Contact</a>
+      <button id="close-menu" class="absolute top-6 right-6 text-2xl" aria-label="Close menu"><i class="fas fa-times"></i></button>
+    </div>
+
+    <main class="max-w-6xl mx-auto px-4 sm:px-6 pb-16 pt-20 mt-16">
+      <section id="home" class="grid lg:grid-cols-[1.2fr_0.8fr] gap-10 items-center mt-4" style="scroll-margin-top: 100px;">
+        <div>
+          <p class="uppercase tracking-[0.3em] text-xs sm:text-sm text-white">
+            Backend Developer
+          </p>
+          <h1 class="font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl mt-4 leading-tight">
+            I build scalable web applications.
+          </h1>
+          <p class="mt-6 text-base sm:text-lg text-white max-w-xl">
+            I specialize in building resilient backend systems with
+            thoughtfully designed APIs, real-time observability, and
+            deployment workflows you can trust.
+          </p>
+          <div class="mt-8 flex flex-wrap gap-4">
+            <button id="downloadBtn"
+              class="bg-gradient-to-b from-slate-950 via-blue-900 to-blue-950 border-2 border-white text-mist px-4 sm:px-6 py-3 uppercase tracking-[0.2em] text-xs font-semibold hover:bg-gradient-to-b from-slate-950 via-blue-900 to-blue-950 transition">
+              Download Resume
+            </button>
+            <div
+              class="bg-gradient-to-b from-slate-950 via-blue-900 to-blue-950 text-mist px-4 sm:px-6 py-3 uppercase tracking-[0.2em] text-sm sm:text-md font-semibold cursor-default select-none">
+              Mohd Kaif
+            </div>
+          </div>
+        </div>
+        <div class="bg-gradient-to-b from-slate-950 via-blue-900 to-blue-950 text-mist p-4 sm:p-6 md:p-8 rounded-3xl shadow-lg">
+          <p class="uppercase tracking-[0.3em] text-xs text-white">
+            Backend Focus
+          </p>
+          <ul class="mt-5 space-y-4">
+            <li class="flex items-start gap-3">
+              <span class="w-2 h-2 bg-azure mt-2 rounded-full"></span>
+              <div>
+                <p class="font-semibold text-sm sm:text-base">API Design</p>
+                <p class="text-xs sm:text-sm text-mist/70">
+                  I design REST APIs with clear, consistent contracts and
+                  well-managed versioning for long-term maintainability.
+                </p>
+              </div>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="w-2 h-2 bg-azure mt-2 rounded-full"></span>
+              <div>
+                <p class="font-semibold text-sm sm:text-base">Scalability</p>
+                <p class="text-xs sm:text-sm text-mist/70">
+                  I build systems that handle high traffic using event-driven
+                  architecture, caching strategies, and high-throughput data
+                  processing.
+                </p>
+              </div>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="w-2 h-2 bg-azure mt-2 rounded-full"></span>
+              <div>
+                <p class="font-semibold text-sm sm:text-base">Observability</p>
+                <p class="text-xs sm:text-sm text-mist/70">
+                  I implement end-to-end monitoring with structured logging,
+                  metrics, tracing, and alerting aligned with defined SLOs.
+                </p>
+              </div>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="w-2 h-2 bg-azure mt-2 rounded-full"></span>
+              <div>
+                <p class="font-semibold text-sm sm:text-base">Reliability</p>
+                <p class="text-xs sm:text-sm text-mist/70">
+                  I ensure stable deployments through automated CI/CD
+                  pipelines, zero-downtime releases, and safe rollback
+                  strategies.
+                </p>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <section id="about" class="py-8 sm:py-12" style="scroll-margin-top: 100px;">
+        <div class="container mx-auto px-4 sm:px-6">
+          <div class="p-4 sm:p-6 rounded-lg shadow-sm bg-gradient-to-b from-slate-950 via-blue-950">
+            <h2 class="font-display text-2xl sm:text-3xl mb-4 text-white">About Me</h2>
+
+            <p class="text-white leading-relaxed text-sm sm:text-base">
+              I am a backend developer with
+              <strong>1.4 months of professional experience</strong>, focused
+              on building reliable, high-performance, and secure backend
+              systems. I develop APIs and data services that remain stable
+              under real-world workloads, with strong observability and
+              predictable release cycles. I value clean service contracts,
+              security-first practices, and automation that reduces
+              operational risk, and I enjoy working closely with product teams
+              to transform business requirements into dependable system
+              architecture.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section id="skills" class="mt-12 sm:mt-20 max-w-5xl" style="scroll-margin-top: 100px;">
+        <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+          <h2 class="font-display text-2xl sm:text-3xl">Skills & Expertise</h2>
+          <p class="text-xs sm:text-sm uppercase tracking-[0.2em] text-white">
+            What I work with
+          </p>
+        </div>
+
+        <p class="mt-6 text-white max-w-4xl leading-relaxed text-sm sm:text-base">
+          I focus on backend development and system design, building scalable
+          and reliable applications with clean APIs, efficient data handling,
+          and modern engineering practices.
+        </p>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 mt-8">
+          <!-- Backend -->
+          <div class="border border-mist/20 p-4 sm:p-6 rounded-2xl bg-gradient-to-b from-slate-950 via-blue-900 to-blue-950">
+            <h3 class="font-semibold text-base sm:text-lg">Backend</h3>
+            <ul class="mt-3 space-y-2 text-white text-xs sm:text-sm">
+              <li>Node.js & Express</li>
+              <li>Laravel / PHP</li>
+              <li>REST APIs</li>
+              <li>Authentication (JWT, OAuth)</li>
+            </ul>
+          </div>
+
+          <!-- Database -->
+          <div class="border border-mist/20 p-4 sm:p-6 rounded-2xl bg-gradient-to-b from-slate-950 via-blue-900 to-blue-950">
+            <h3 class="font-semibold text-base sm:text-lg">Databases</h3>
+            <ul class="mt-3 space-y-2 text-white text-xs sm:text-sm">
+              <li>MySQL</li>
+              <li>Postgresql</li>
+            </ul>
+          </div>
+
+          <!-- DevOps & Tools -->
+          <div class="border border-mist/20 p-4 sm:p-6 rounded-2xl bg-gradient-to-b from-slate-950 via-blue-900 to-blue-950">
+            <h3 class="font-semibold text-base sm:text-lg">Deployemnet & Tools</h3>
+            <ul class="mt-3 space-y-2 text-white text-xs sm:text-sm">
+              <li>Git & GitHub</li>
+              <li>CPanel</li>
+              <li>Vercel / Render</li>
+              <li>Vercel / Render</li>
+            </ul>
+          </div>
+
+          <!-- Additional Skills -->
+          <div class="border border-mist/20 p-4 sm:p-6 rounded-2xl bg-gradient-to-b from-slate-950 via-blue-900 to-blue-950">
+            <h3 class="font-semibold text-base sm:text-lg">
+              Additional Skills & Integrtion
+            </h3>
+            <ul class="mt-3 space-y-2 text-white text-xs sm:text-sm">
+              <li>HTML</li>
+              <li>Tailwind, Bootstrap CSS</li>
+              <li>Payment Gateway</li>
+              <li>Firebase</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section id="projects" class="mt-12 sm:mt-20 max-w-6xl" style="scroll-margin-top: 100px;">
+        <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+          <h2 class="font-display text-2xl sm:text-3xl">Projects</h2>
+          <p class="text-xs sm:text-sm uppercase tracking-[0.2em] text-white">My Work</p>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6 mt-8">
+          <!-- Project 1 -->
+          <a href="#" class="group relative overflow-hidden rounded-2xl border border-mist/20">
+            <img src="maalwa.png" alt="Project 1"
+              class="w-full h-56 object-cover transition-transform duration-300 group-hover:scale-110" />
+
+            <div
+              class="absolute inset-0 bg-gradient-to-b from-slate-950 via-blue-950 to-slate-950 flex flex-col items-center justify-center text-center px-6 opacity-0 group-hover:opacity-100 transition">
+              <h3 class="text-white font-semibold text-lg mb-2">
+                Malwa Mobile Services
+              </h3>
+
+              <p class="text-white/80 text-sm leading-relaxed mb-4">
+                A web and mobile application built for a mobile repairing shop
+                to manage customers, service requests, and repair tracking
+                with a simple and user-friendly interface.
+              </p>
+
+              <span class="text-white uppercase tracking-[0.3em] text-sm font-semibold">
+                Redirect
+              </span>
+            </div>
+          </a>
+
+          <!-- Project 2 -->
+          <a href="#" class="group relative overflow-hidden rounded-2xl border border-mist/20">
+            <img src="affiliate.png" alt="Project 2"
+              class="w-full h-56 object-cover transition-transform duration-300 group-hover:scale-110" />
+
+            <div
+              class="absolute inset-0 bg-gradient-to-b from-slate-950 via-blue-950 to-slate-950 flex flex-col items-center justify-center text-center px-6 opacity-0 group-hover:opacity-100 transition">
+              <h3 class="text-white font-semibold text-lg mb-2">
+                Affiliate Programme System
+              </h3>
+              <p class="text-white/80 text-sm leading-relaxed mb-3">
+                Affiliate tracking web application for monitoring links,
+                clicks, and viewing performance data in a simple dashboard.
+              </p>
+
+              <span class="text-white uppercase tracking-[0.3em] text-sm font-semibold">
+                Redirect
+              </span>
+            </div>
+          </a>
+
+          <!-- Project 3 -->
+          <a href="#" class="group relative overflow-hidden rounded-2xl border border-mist/20">
+            <img src="allenhouse.png" alt="Project 3"
+              class="w-full h-56 object-cover transition-transform duration-300 group-hover:scale-110" />
+
+            <div
+              class="absolute inset-0 bg-gradient-to-b from-slate-950 via-blue-950 to-slate-950 flex flex-col items-center justify-center text-center px-6 opacity-0 group-hover:opacity-100 transition">
+              <h3 class="text-white font-semibold text-lg mb-2">
+                Allenhouse School
+              </h3>
+              <p class="text-white/80 text-sm leading-relaxed mb-3">
+                A web-based school dashboard that allows institutions to build
+                and manage blogs and dynamic websites, update content easily,
+                and control everything from a single admin panel.
+              </p>
+
+              <span class="text-white uppercase tracking-[0.3em] text-sm font-semibold">
+                Redirect
+              </span>
+            </div>
+          </a>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6 mt-8">
+          <!-- Project 4 -->
+          <a href="#" class="group relative overflow-hidden rounded-2xl border border-mist/20">
+            <img src="gowork.png" alt="Project 1"
+              class="w-full h-48 sm:h-56 object-cover transition-transform duration-300 group-hover:scale-110" />
+
+            <div
+              class="absolute inset-0 bg-gradient-to-b from-slate-950 via-blue-950 to-slate-950 flex flex-col items-center justify-center text-center px-4 sm:px-6 opacity-0 group-hover:opacity-100 transition">
+              <h3 class="text-white font-semibold text-base sm:text-lg mb-2">
+                Gowork Job Portal
+              </h3>
+
+              <p class="text-white/80 text-xs sm:text-sm leading-relaxed mb-4">
+                GoWork is a modern job portal web application that connects
+                job seekers with employers on a single platform. It allows
+                users to search and apply for jobs easily while employers can
+                post vacancies and manage applications efficiently
+              </p>
+
+              <span class="text-white uppercase tracking-[0.3em] text-xs sm:text-sm font-semibold">
+                Redirect
+              </span>
+            </div>
+          </a>
+
+          <!-- Project 5 -->
+          <a href="#" class="group relative overflow-hidden rounded-2xl border border-mist/20">
+            <img src="hospital.png" alt="Project 2"
+              class="w-full h-48 sm:h-56 object-cover transition-transform duration-300 group-hover:scale-110" />
+
+            <div
+              class="absolute inset-0 bg-gradient-to-b from-slate-950 via-blue-950 to-slate-950 flex flex-col items-center justify-center text-center px-4 sm:px-6 opacity-0 group-hover:opacity-100 transition">
+              <h3 class="text-white font-semibold text-base sm:text-lg mb-2">
+                Hospital Management
+              </h3>
+              <p class="text-white/80 text-xs sm:text-sm leading-relaxed mb-3">
+                The Hospital Management System includes an Admin Dashboard for
+                managing staff, patients, and overall system operations, along
+                with a separate dashboard for doctors and users to handle
+                appointments and medical records efficiently.
+              </p>
+
+              <span class="text-white uppercase tracking-[0.3em] text-xs sm:text-sm font-semibold">
+                Redirect
+              </span>
+            </div>
+          </a>
+
+          <!-- Project 6 -->
+          <a href="#" class="group relative overflow-hidden rounded-2xl border border-mist/20">
+            <img src="global.png" alt="Project 3"
+              class="w-full h-48 sm:h-56 object-cover transition-transform duration-300 group-hover:scale-110" />
+
+            <div
+              class="absolute inset-0 bg-gradient-to-b from-slate-950 via-blue-950 to-slate-950 flex flex-col items-center justify-center text-center px-4 sm:px-6 opacity-0 group-hover:opacity-100 transition">
+              <h3 class="text-white font-semibold text-base sm:text-lg mb-2">
+                Global Projects CRM
+              </h3>
+              <p class="text-white/80 text-xs sm:text-sm leading-relaxed mb-3">
+                This global CRM project helps call centers manage sales,
+                customer data, and agent performance through a simple and
+                efficient system.
+              </p>
+
+              <span class="text-white uppercase tracking-[0.3em] text-xs sm:text-sm font-semibold">
+                Redirect
+              </span>
+            </div>
+          </a>
+        </div>
+      </section>
+
+      <section id="projects" class="py-8 sm:py-12">
+        <div class="container mx-auto px-4 sm:px-6">
+          <h2 class="text-2xl sm:text-3xl font-display text-left mb-8">About Projects</h2>
+
+          <!-- Project 1 -->
+          <div
+            class="mb-6 p-4 sm:p-6 border-2 shadow-2xl rounded-xl bg-gradient-to-b from-slate-950 via-blue-950 to-slate-950">
+            <h3 class="text-lg sm:text-xl font-display mb-2 cursor-pointer">
+              Malwa Mobile Services Website
+            </h3>
+            <div class="project-content hidden">
+              <p class="text-white mb-2 text-sm sm:text-base">
+                Malwa Mobile Services is a business website developed to
+                showcase mobile repair services, service plans, and customer
+                contact management. It provides a responsive design and an
+                easy-to-manage admin panel.
+              </p>
+              <p class="text-sm sm:text-base">
+                <strong>Technologies Used:</strong> HTML, CSS, JavaScript,
+                Laravel, MySQL, Tailwind CSS
+              </p>
+            </div>
+          </div>
+
+          <!-- Project 2 -->
+          <div
+            class="mb-6 p-4 sm:p-6 border-2 shadow-2xl rounded-xl bg-gradient-to-b from-slate-950 via-blue-950 to-slate-950">
+            <h3 class="text-lg sm:text-xl font-display mb-2 cursor-pointer">
+              Affiliate Programme
+            </h3>
+            <div class="project-content hidden">
+              <p class="text-white mb-2 text-sm sm:text-base">
+                This affiliate program system manages user registrations,
+                referral tracking, and commission calculations through a
+                secure dashboard. It helps track affiliate performance and
+                generate real-time reports.
+              </p>
+              <p class="text-sm sm:text-base">
+                <strong>Technologies Used:</strong> HTML, CSS, JavaScript,
+                Laravel, MySQL, Tailwind CSS
+              </p>
+            </div>
+          </div>
+
+          <!-- Project 3 -->
+          <div
+            class="mb-6 p-4 sm:p-6 border-2 shadow-2xl rounded-xl bg-gradient-to-b from-slate-950 via-blue-950 to-slate-950">
+            <h3 class="text-lg sm:text-xl font-display mb-2 cursor-pointer">
+              Allenhouse School Dashboard
+            </h3>
+            <div class="project-content hidden">
+              <p class="text-white mb-2 text-sm sm:text-base">
+                Allenhouse is a dynamic school website with a dashboard for
+                managing students, blogs, and school activities. It provides a
+                responsive design and an easy content management system for
+                administrators.
+              </p>
+              <p class="text-sm sm:text-base">
+                <strong>Technologies Used:</strong> HTML, CSS, JavaScript,
+                Laravel, MySQL, Tailwind CSS
+              </p>
+            </div>
+          </div>
+
+          <!-- Project 4 -->
+          <div
+            class="mb-6 p-4 sm:p-6 border-2 shadow-2xl rounded-xl bg-gradient-to-b from-slate-950 via-blue-950 to-slate-950">
+            <h3 class="text-lg sm:text-xl font-display mb-2 cursor-pointer">
+              GoWork – Job Portal Web Application
+            </h3>
+            <div class="project-content hidden">
+              <p class="text-white mb-2 text-sm sm:text-base">
+                GoWork is a modern job portal platform that connects job
+                seekers with employers and allows users to search, apply, and
+                manage job opportunities easily. It provides secure
+                authentication, profile management, and an admin dashboard for
+                job and user control.
+              </p>
+              <p class="text-sm sm:text-base">
+                <strong>Technologies Used:</strong> HTML, CSS, JavaScript,
+                Laravel, MySQL, Tailwind CSS
+              </p>
+            </div>
+          </div>
+
+          <!-- Project 5 -->
+          <div
+            class="mb-6 p-4 sm:p-6 border-2 shadow-2xl rounded-xl bg-gradient-to-b from-slate-950 via-blue-950 to-slate-950">
+            <h3 class="text-lg sm:text-xl font-display mb-2 cursor-pointer">
+              Hospital Management System
+            </h3>
+            <div class="project-content hidden">
+              <p class="text-white mb-2 text-sm sm:text-base">
+                This system includes an Admin Dashboard and a separate
+                dashboard for doctors and users to manage patients,
+                appointments, and medical records efficiently. It simplifies
+                hospital operations through a centralized and user-friendly
+                interface.
+              </p>
+              <p class="text-sm sm:text-base">
+                <strong>Technologies Used:</strong> HTML, CSS, JavaScript,
+                Laravel, MySQL, Tailwind CSS
+              </p>
+            </div>
+          </div>
+
+          <!-- Project 6 -->
+          <div
+            class="mb-6 p-4 sm:p-6 border-2 shadow-2xl rounded-xl bg-gradient-to-b from-slate-950 via-blue-950 to-slate-950">
+            <h3 class="text-lg sm:text-xl font-display mb-2 cursor-pointer">
+              Global Project CRM
+            </h3>
+            <div class="project-content hidden">
+              <p class="text-white mb-2 text-sm sm:text-base">
+                This global CRM project is designed for call centers to manage
+                sales, customer data, and agent performance through a simple
+                and efficient system. It helps improve workflow, lead
+                tracking, and communication management.
+              </p>
+              <p class="text-sm sm:text-base">
+                <strong>Technologies Used:</strong> HTML, CSS, JavaScript,
+                MySQL, laravel, Tailwind CSS
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="experience" class="py-8 sm:py-12 bg-gradient-to-b from-slate-950 via-blue-950 rounded-lg" style="scroll-margin-top: 100px;">
+        <div class="container mx-auto px-4 sm:px-6">
+          <h2 class="text-2xl sm:text-3xl font-display text-left mb-8">Experience</h2>
+
+          <div class="mb-6 p-4 sm:p-6 rounded-lg">
+            <h3 class="text-lg sm:text-xl font-display">Web Developer</h3>
+            <p class="text-xs sm:text-sm text-white">
+              Bitmax Technology. | 2025 – Present
+            </p>
+            <p class="text-white mt-2 text-sm sm:text-base">
+              Worked on multiple web applications including hospital
+              management systems, and CRM platforms. Developed secure backend
+              systems and responsive user interfaces using modern web
+              technologies.
+            </p>
+          </div>
+
+          <div class="mb-6 p-4 sm:p-6 rounded-lg">
+            <h3 class="text-lg sm:text-xl font-semibold">Backend Developer</h3>
+            <p class="text-xs sm:text-sm text-white">
+              Technotip Solution Pvt Ltd. | July 2025 – Nov 2025
+            </p>
+            <p class="text-white mt-2 text-sm sm:text-base">
+              Built scalable backend solutions with database design, API
+              development, and authentication systems for business and
+              management applications.
+            </p>
+          </div>
+
+          <div class="mb-6 p-4 sm:p-6 rounded-lg">
+            <h3 class="text-lg sm:text-xl font-semibold">Backend Developer</h3>
+            <p class="text-xs sm:text-sm text-white">
+              Sparta Telecom | Sep 2024 – July 2025
+            </p>
+            <p class="text-white mt-2 text-sm sm:text-base">
+              Developed and maintained backend systems for CRM and sales
+              management applications, including API integration, database
+              optimization, and secure authentication to support
+              high-performance and scalable business operations.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section id="education" class="py-8 sm:py-12 bg-gradient-to-b from-slate-950 via-blue-950 rounded-lg mt-2" style="scroll-margin-top: 100px;">
+        <div class="container mx-auto px-4 sm:px-6">
+          <h2 class="text-2xl sm:text-3xl font-display text-left mb-8">Education</h2>
+
+          <div class="mb-6 p-4 sm:p-6">
+            <h3 class="text-lg sm:text-xl font-display">
+              Bachelor of Computer Applications (BCA)
+            </h3>
+            <p class="text-xs sm:text-sm text-white">Vivek University | 2021 – 2024</p>
+            <p class="text-white mt-2 text-sm sm:text-base">
+              Studied core computer science subjects including programming,
+              database systems, and software engineering, with a strong focus
+              on web development and backend technologies.
+            </p>
+          </div>
+
+          <div class="mb-6 p-4 sm:p-6">
+            <h3 class="text-lg sm:text-xl font-display">
+              Higher Secondary Education (12th Grade)
+            </h3>
+            <p class="text-xs sm:text-sm text-white">
+              Kisan Inter College | 2019 – 2021
+            </p>
+            <p class="text-white mt-2 text-sm sm:text-base">
+              Completed higher secondary education with a specialization in
+              science and mathematics, building a foundation in logical
+              thinking and problem-solving skills.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section id="contact" class="py-8 sm:py-12 bg-gradient-to-b from-slate-950 via-blue-950 rounded-lg mt-2" style="scroll-margin-top: 100px;">
+        <div class="container mx-auto px-4 sm:px-6">
+          <h2 class="text-2xl sm:text-3xl font-display text-left mb-8">Get in Touch</h2>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
+            <!-- Left Side: Contact Form -->
+            <div class="p-4 sm:p-6">
+              <h3 class="text-lg sm:text-xl font-display mb-4">Send a Message</h3>
+              <form>
+                <div class="mb-4">
+                  <label class="block text-xs sm:text-sm font-medium mb-1">Full Name</label>
+                  <input type="text" placeholder="Enter your name"
+                    class="w-full rounded-md px-4 py-2 bg-gradient-to-b from-slate-950 via-blue-950 text-white placeholder-white focus:outline-none text-sm sm:text-base" />
+                </div>
+
+                <div class="mb-4">
+                  <label class="block text-xs sm:text-sm font-medium mb-1">Email Address</label>
+                  <input type="email" placeholder="Enter your email"
+                    class="w-full rounded-md px-4 py-2 bg-gradient-to-b from-slate-950 via-blue-950 text-white placeholder-white focus:outline-none text-sm sm:text-base" />
+                </div>
+
+                <div class="mb-4">
+                  <label class="block text-xs sm:text-sm font-medium mb-1">Message</label>
+                  <textarea rows="4" placeholder="Write your message"
+                    class="w-full rounded-md px-4 py-2 bg-gradient-to-b from-slate-950 via-blue-950 text-white placeholder-white focus:outline-none text-sm sm:text-base"></textarea>
+                </div>
+
+                <button type="submit"
+                  class="text-white px-4 sm:px-6 py-2 rounded-md bg-gradient-to-b from-slate-950 via-blue-950 transition text-sm sm:text-base">
+                  Send Message
+                </button>
+              </form>
+            </div>
+
+            <!-- Right Side: Contact Info -->
+            <div class="p-4 sm:p-6">
+              <h3 class="text-lg sm:text-xl font-display mb-4">Contact Information</h3>
+
+              <p class="text-white flex items-center gap-2 mb-2 mt-8 text-sm sm:text-base">
+                <span
+                  class="bg-gradient-to-b from-slate-950 via-blue-950 to-slate-950 shadow-md rounded-lg p-2 w-10 flex justify-center items-center">
+                  <i class="fas fa-phone text-white"></i>
+                </span>
+                +91 9027114840
+              </p>
+
+              <p class="text-white mb-3 flex items-center gap-2 text-sm sm:text-base">
+                <span
+                  class="bg-gradient-to-b from-slate-950 via-blue-950 to-slate-950 shadow-md rounded-lg p-2 w-10 flex justify-center items-center">
+                  <i class="fas fa-envelope text-white"></i>
+                </span>
+                mohdkif8603@gmail.com
+              </p>
+
+
+              <p class="text-white flex items-center gap-2 text-sm sm:text-base">
+                <span
+                  class="bg-gradient-to-b from-slate-950 via-blue-950 to-slate-950 shadow-md rounded-lg p-2 w-10 flex justify-center items-center">
+                  <i class="fas fa-map-marker-alt text-white"></i>
+                </span>
+                Bijnor, Uttar Pradesh – 246701
+              </p>
+
+              <p class="text-white mt-4 text-sm sm:text-base">
+                Feel free to reach out for project inquiries, collaborations,
+                or any questions.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <footer class="mt-12 sm:mt-16 w-full">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 py-8 sm:py-10 grid grid-cols-1 md:grid-cols-3 gap-8 sm:gap-12 text-white">
+          <!-- About -->
+          <div>
+
+
+            <h3 class="text-lg sm:text-xl font-display mb-3">About Me</h3>
+            <p class="text-white text-xs sm:text-sm leading-relaxed">
+              Backend developer focused on building reliable, secure, and
+              scalable web applications with clean service design and modern
+              technologies.
+            </p>
+          </div>
+
+          <!-- Contact -->
+          <div>
+            <h3 class="text-lg sm:text-xl font-display mb-3">Contact</h3>
+            <p class="text-xs sm:text-sm text-white">
+              <i class="fas fa-envelope"></i> : mohdkaif8603@gmail.com
+            </p>
+            <p class="text-xs sm:text-sm text-white">
+              <!-- Phone icon -->
+              <i class="fas fa-phone"></i> : +91 9027114840
+            </p>
+            <p class="text-xs sm:text-sm text-white">
+              <i class="fas fa-map-marker-alt"></i> : Bijnor, Uttar Pradesh –
+              246701
+            </p>
+          </div>
+
+          <!-- Social Icons -->
+          <div>
+            <h3 class="text-lg sm:text-xl font-display mb-3">Follow Me</h3>
+
+            <div class="flex gap-4 mt-2">
+              <!-- GitHub -->
+              <a href="https://github.com/Mohdkaif379" target="_blank"
+                class="w-10 sm:w-12 h-10 sm:h-12 flex items-center justify-center rounded-lg bg-gradient-to-b from-slate-950 via-blue-950 to-slate-950 transition shadow-md">
+                <i class="fab fa-github text-white text-lg sm:text-xl"></i>
+              </a>
+
+              <!-- LinkedIn -->
+              <a href="#"
+                class="w-10 sm:w-12 h-10 sm:h-12 flex items-center justify-center rounded-lg bg-gradient-to-b from-slate-950 via-blue-950 to-slate-950 transition shadow-md">
+                <i class="fab fa-linkedin text-white text-lg sm:text-xl"></i>
+              </a>
+
+              <!-- Instagram -->
+              <a href="https://www.instagram.com/_itz_mk_2" target="_blank"
+                class="w-10 sm:w-12 h-10 sm:h-12 flex items-center justify-center rounded-lg bg-gradient-to-b from-slate-950 via-blue-950 to-slate-950 transition shadow-md">
+                <i class="fab fa-instagram text-white text-lg sm:text-xl"></i>
+              </a>
+
+              <!-- Twitter -->
+              <a href="#"
+                class="w-10 sm:w-12 h-10 sm:h-12 flex items-center justify-center rounded-lg bg-gradient-to-b from-slate-950 via-blue-950 to-slate-950 transition shadow-md">
+                <i class="fab fa-twitter text-white text-lg sm:text-xl"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="border-t border-gray-700 text-center py-4 text-xs sm:text-sm text-white">
+          © 2026 Mohd Kaif. All rights reserved.
+        </div>
+      </footer>
+    </main>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+
+</html>
