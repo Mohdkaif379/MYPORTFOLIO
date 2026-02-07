@@ -692,23 +692,23 @@
             <!-- Left Side: Contact Form -->
             <div class="p-4 sm:p-6">
               <h3 class="text-lg sm:text-xl font-display mb-4">Send a Message</h3>
-              <form>
+              <form id="contact-form">
                 <div class="mb-4">
                   <label class="block text-xs sm:text-sm font-medium mb-1">Full Name</label>
-                  <input type="text" placeholder="Enter your name"
-                    class="w-full rounded-md px-4 py-2 bg-gradient-to-b from-slate-950 via-blue-950 text-white placeholder-white focus:outline-none text-sm sm:text-base" />
+                  <input type="text" id="name" placeholder="Enter your name"
+                    class="w-full rounded-md px-4 py-2 bg-gradient-to-b from-slate-950 via-blue-950 text-white placeholder-white focus:outline-none text-sm sm:text-base" required />
                 </div>
 
                 <div class="mb-4">
                   <label class="block text-xs sm:text-sm font-medium mb-1">Email Address</label>
-                  <input type="email" placeholder="Enter your email"
-                    class="w-full rounded-md px-4 py-2 bg-gradient-to-b from-slate-950 via-blue-950 text-white placeholder-white focus:outline-none text-sm sm:text-base" />
+                  <input type="email" id="email" placeholder="Enter your email"
+                    class="w-full rounded-md px-4 py-2 bg-gradient-to-b from-slate-950 via-blue-950 text-white placeholder-white focus:outline-none text-sm sm:text-base" required />
                 </div>
 
                 <div class="mb-4">
                   <label class="block text-xs sm:text-sm font-medium mb-1">Message</label>
-                  <textarea rows="4" placeholder="Write your message"
-                    class="w-full rounded-md px-4 py-2 bg-gradient-to-b from-slate-950 via-blue-950 text-white placeholder-white focus:outline-none text-sm sm:text-base"></textarea>
+                  <textarea rows="4" id="message" placeholder="Write your message"
+                    class="w-full rounded-md px-4 py-2 bg-gradient-to-b from-slate-950 via-blue-950 text-white placeholder-white focus:outline-none text-sm sm:text-base" required></textarea>
                 </div>
 
                 <button type="submit"
@@ -824,6 +824,12 @@
       </footer>
     </main>
   </div>
+
+  <!-- Toast Notification -->
+<div id="toast" class="fixed top-4 left-1/2 transform -translate-x-1/2 bg-gradient-to-b from-slate-950 via-blue-950 to-slate-950 text-white px-4 py-2 rounded-lg shadow-lg opacity-0 transition-opacity duration-300 z-50">
+  <span id="toast-message"></span>
+</div>
+
 
   <script src="app.js"></script>
 </body>
