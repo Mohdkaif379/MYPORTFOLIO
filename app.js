@@ -25,7 +25,6 @@ if (closeMenuBtn && mobileMenu) {
     mobileMenu.classList.add("hidden");
   });
 }
-
 // Close menu when clicking on a link
 const mobileMenuLinks = mobileMenu ? mobileMenu.querySelectorAll("a") : [];
 mobileMenuLinks.forEach(link => {
