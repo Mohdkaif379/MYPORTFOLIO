@@ -34,6 +34,18 @@
     href="https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:wght@400;600;700&family=Space+Grotesk:wght@400;500;600&display=swap"
     rel="stylesheet" />
   <style>
+    .sidebar {
+  overflow-y: auto;      /* scroll rahega */
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE/Edge old */
+}
+
+.sidebar::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+  display: none;         /* Chrome/Safari/Edge */
+}
+
     :root {
       --bg1: #0a1126;
       --bg2: #12204a;
