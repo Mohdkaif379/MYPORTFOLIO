@@ -1,0 +1,425 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <!-- Primary Meta Tags -->
+  <title>Blog | MK Industry - Backend & Software Engineering Insights</title>
+  <meta name="title" content="Blog | MK Industry - Backend & Software Engineering Insights" />
+  <meta name="description" content="Read the latest articles on backend architecture, REST API design, database optimization, and scalable web solutions by MK Industry." />
+  <meta name="keywords" content="MK Industry, Mohd Kaif, Backend Blog, Software Engineering, Node.js Blog, Laravel, Databases, API Optimization" />
+  <meta name="author" content="Mohd Kaif (MK Industry)" />
+  <meta name="robots" content="index, follow" />
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://mkindustry.netlify.app/blog.html" />
+  <meta property="og:title" content="Blog | MK Industry - Backend & Software Engineering Insights" />
+  <meta property="og:description" content="Technical writeups on backend engineering, system scalability, and database architecture by MK Industry." />
+  <meta property="og:image" content="https://mkindustry.netlify.app/maalwa.png" />
+
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image" />
+  <meta property="twitter:url" content="https://mkindustry.netlify.app/blog.html" />
+  <meta property="twitter:title" content="Blog | MK Industry - Backend & Software Engineering Insights" />
+  <meta property="twitter:description" content="Technical writeups on backend engineering, system scalability, and database architecture by MK Industry." />
+  <meta property="twitter:image" content="https://mkindustry.netlify.app/maalwa.png" />
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            midnight: "#0a1126",
+            ocean: "#12204a",
+            azure: "#2f6df6",
+            mist: "#eef3ff",
+            steel: "#9bb0d6",
+          },
+          fontFamily: {
+            display: ["IBM Plex Serif", "ui-serif", "serif"],
+            body: ["Space Grotesk", "ui-sans-serif", "system-ui"],
+          },
+          backgroundImage: {
+            grid: "radial-gradient(circle at 1px 1px, rgba(238,243,255,0.07) 1px, transparent 0)",
+          },
+        },
+      },
+    };
+  </script>
+  <link
+    href="https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:wght@400;600;700&family=Space+Grotesk:wght@400;500;600&display=swap"
+    rel="stylesheet" />
+  <style>
+    html,
+    body {
+      overflow-y: auto !important;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+    }
+
+    html::-webkit-scrollbar,
+    body::-webkit-scrollbar {
+      width: 0;
+      height: 0;
+      display: none;
+    }
+
+    :root {
+      --bg1: #0a1126;
+      --bg2: #12204a;
+      --bg3: #1b2a5c;
+    }
+
+    body.bg-photo {
+      background-image:
+        linear-gradient(180deg, #020617 0%, #172554 50%, #020617 100%);
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      background-repeat: no-repeat;
+    }
+
+    .glass {
+      background: rgba(18, 32, 74, 0.4);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+  </style>
+</head>
+
+<body class="bg-photo bg-gradient-to-b from-slate-950 via-blue-950 to-slate-950 text-mist font-body">
+  <div class="relative z-10 min-h-screen bg-grid bg-[size:32px_32px]">
+    <!-- Header -->
+    <header class="fixed top-0 left-0 right-0 z-50 bg-gradient-to-b from-slate-950 via-blue-950 to-slate-950 py-6">
+      <nav class="max-w-6xl mx-auto px-6 flex items-center justify-between">
+        <button id="mobile-menu-btn" class="md:hidden text-white text-2xl" aria-label="Open menu">
+          <i class="fas fa-bars"></i>
+        </button>
+        <div class="hidden md:flex gap-6 text-sm uppercase tracking-[0.2em]">
+          <a class="hover:text-azure" href="index.html#home">Home</a>
+          <a class="hover:text-azure" href="index.html#about">About</a>
+          <a class="hover:text-azure" href="index.html#projects">Work</a>
+          <a class="hover:text-azure" href="index.html#skills">Stack</a>
+          <a class="hover:text-azure" href="index.html#experience">Experience</a>
+          <a class="hover:text-azure" href="index.html#education">Education</a>
+          <a class="hover:text-azure" href="index.html#contact">Contact</a>
+          <a class="hover:text-azure text-azure font-semibold" href="blog.html">Blog</a>
+        </div>
+        <div class="flex items-center gap-3">
+          <div
+            class="h-11 w-11 rounded-2xl bg-gradient-to-b from-slate-950 via-blue-900 to-blue-950 shadow-2xl text-white flex items-center justify-center font-semibold">
+            MKI
+          </div>
+          <div>
+            <div class="text-sm uppercase tracking-[0.3em] font-semibold">
+              MK Industry
+            </div>
+            <div class="text-xs text-white uppercase tracking-[0.2em]">
+              Mohd Kaif | Backend Developer
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="fixed inset-0 bg-slate-950 bg-opacity-95 z-40 hidden flex flex-col items-center justify-center space-y-6 text-white text-lg uppercase tracking-[0.2em]">
+      <a href="index.html#home" class="hover:text-azure">Home</a>
+      <a href="index.html#about" class="hover:text-azure">About</a>
+      <a href="index.html#projects" class="hover:text-azure">Work</a>
+      <a href="index.html#skills" class="hover:text-azure">Stack</a>
+      <a href="index.html#experience" class="hover:text-azure">Experience</a>
+      <a href="index.html#education" class="hover:text-azure">Education</a>
+      <a href="index.html#contact" class="hover:text-azure">Contact</a>
+      <a href="blog.html" class="hover:text-azure text-azure font-semibold">Blog</a>
+      <button id="close-menu" class="absolute top-6 right-6 text-2xl" aria-label="Close menu"><i class="fas fa-times"></i></button>
+    </div>
+
+    <!-- Main Content -->
+    <main class="max-w-6xl mx-auto px-4 sm:px-6 pb-16 pt-28">
+      <!-- Title Section -->
+      <section class="text-center py-10">
+        <p class="uppercase tracking-[0.3em] text-xs sm:text-sm text-azure font-semibold">
+          MK Industry Publications
+        </p>
+        <h1 class="font-display text-4xl sm:text-5xl md:text-6xl mt-4 leading-tight">
+          Technical Writing & Insights
+        </h1>
+        <p class="mt-6 text-base sm:text-lg text-steel max-w-2xl mx-auto">
+          Deep dives into backend architectures, database indexing strategies, REST API performance, and building resilient systems.
+        </p>
+      </section>
+
+      <!-- Search & Filters -->
+      <section class="max-w-4xl mx-auto mb-12">
+        <div class="flex flex-col md:flex-row gap-4 justify-between items-center bg-slate-950/50 p-4 rounded-2xl border border-white/10 glass">
+          <!-- Search Bar -->
+          <div class="relative w-full md:w-72">
+            <span class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none text-steel">
+              <i class="fas fa-search"></i>
+            </span>
+            <input type="text" id="blog-search" placeholder="Search articles..."
+              class="w-full pl-10 pr-4 py-2 rounded-xl bg-slate-950 border border-white/10 text-white placeholder-steel focus:outline-none focus:border-azure text-sm" />
+          </div>
+
+          <!-- Category Tags -->
+          <div class="flex flex-wrap gap-2 justify-center" id="category-filters">
+            <button class="category-btn active px-4 py-1.5 rounded-lg text-xs font-semibold tracking-wider uppercase bg-azure text-white transition-colors" data-category="all">
+              All
+            </button>
+            <button class="category-btn px-4 py-1.5 rounded-lg text-xs font-semibold tracking-wider uppercase bg-slate-900 text-steel hover:bg-slate-800 hover:text-white transition-colors" data-category="node">
+              Node.js
+            </button>
+            <button class="category-btn px-4 py-1.5 rounded-lg text-xs font-semibold tracking-wider uppercase bg-slate-900 text-steel hover:bg-slate-800 hover:text-white transition-colors" data-category="database">
+              Databases
+            </button>
+            <button class="category-btn px-4 py-1.5 rounded-lg text-xs font-semibold tracking-wider uppercase bg-slate-900 text-steel hover:bg-slate-800 hover:text-white transition-colors" data-category="laravel">
+              Laravel
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Blog Grid -->
+      <section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="blog-posts-grid">
+        
+        <!-- Blog 1 -->
+        <article class="blog-card flex flex-col bg-gradient-to-b from-slate-950 via-blue-950 to-slate-950 border border-white/10 rounded-2xl overflow-hidden hover:border-azure/50 transition-all duration-300 group" data-category="node">
+          <div class="p-6 flex flex-col flex-grow">
+            <div class="flex items-center justify-between text-xs text-steel mb-3">
+              <span class="bg-azure/20 text-azure px-2.5 py-1 rounded-md font-semibold uppercase tracking-wider">Node.js</span>
+              <span>May 19, 2026</span>
+            </div>
+            <h3 class="font-display text-xl font-semibold mb-3 group-hover:text-azure transition-colors">
+              Optimizing Express APIs for Production Scale
+            </h3>
+            <p class="text-steel text-sm leading-relaxed mb-6 flex-grow">
+              Learn the best practices for structuring Express application middleware, implementing connection pool caching, and reducing CPU bottlenecking for high throughput applications.
+            </p>
+            <div class="flex items-center justify-between mt-auto pt-4 border-t border-white/5">
+              <span class="text-xs text-white/60">5 min read</span>
+              <a href="#" class="text-azure text-sm font-semibold flex items-center gap-1 hover:text-white transition-colors">
+                Read Article <i class="fas fa-arrow-right text-xs group-hover:translate-x-1 transition-transform"></i>
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Blog 2 -->
+        <article class="blog-card flex flex-col bg-gradient-to-b from-slate-950 via-blue-950 to-slate-950 border border-white/10 rounded-2xl overflow-hidden hover:border-azure/50 transition-all duration-300 group" data-category="database">
+          <div class="p-6 flex flex-col flex-grow">
+            <div class="flex items-center justify-between text-xs text-steel mb-3">
+              <span class="bg-emerald-500/20 text-emerald-400 px-2.5 py-1 rounded-md font-semibold uppercase tracking-wider">Databases</span>
+              <span>May 10, 2026</span>
+            </div>
+            <h3 class="font-display text-xl font-semibold mb-3 group-hover:text-azure transition-colors">
+              MySQL Indexing Strategies You Must Know
+            </h3>
+            <p class="text-steel text-sm leading-relaxed mb-6 flex-grow">
+              A comprehensive guide explaining B-Trees, composite indexes, and how to write SQL queries that leverage indexes optimally to prevent full table scans.
+            </p>
+            <div class="flex items-center justify-between mt-auto pt-4 border-t border-white/5">
+              <span class="text-xs text-white/60">8 min read</span>
+              <a href="#" class="text-azure text-sm font-semibold flex items-center gap-1 hover:text-white transition-colors">
+                Read Article <i class="fas fa-arrow-right text-xs group-hover:translate-x-1 transition-transform"></i>
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Blog 3 -->
+        <article class="blog-card flex flex-col bg-gradient-to-b from-slate-950 via-blue-950 to-slate-950 border border-white/10 rounded-2xl overflow-hidden hover:border-azure/50 transition-all duration-300 group" data-category="laravel">
+          <div class="p-6 flex flex-col flex-grow">
+            <div class="flex items-center justify-between text-xs text-steel mb-3">
+              <span class="bg-red-500/20 text-red-400 px-2.5 py-1 rounded-md font-semibold uppercase tracking-wider">Laravel</span>
+              <span>May 02, 2026</span>
+            </div>
+            <h3 class="font-display text-xl font-semibold mb-3 group-hover:text-azure transition-colors">
+              Real-time Notifications with Laravel & Firebase
+            </h3>
+            <p class="text-steel text-sm leading-relaxed mb-6 flex-grow">
+              How we set up atomic transaction-based Push Notifications inside Laravel controllers to fire FCM device tokens instantly and reliably.
+            </p>
+            <div class="flex items-center justify-between mt-auto pt-4 border-t border-white/5">
+              <span class="text-xs text-white/60">6 min read</span>
+              <a href="#" class="text-azure text-sm font-semibold flex items-center gap-1 hover:text-white transition-colors">
+                Read Article <i class="fas fa-arrow-right text-xs group-hover:translate-x-1 transition-transform"></i>
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Blog 4 -->
+        <article class="blog-card flex flex-col bg-gradient-to-b from-slate-950 via-blue-950 to-slate-950 border border-white/10 rounded-2xl overflow-hidden hover:border-azure/50 transition-all duration-300 group" data-category="node">
+          <div class="p-6 flex flex-col flex-grow">
+            <div class="flex items-center justify-between text-xs text-steel mb-3">
+              <span class="bg-azure/20 text-azure px-2.5 py-1 rounded-md font-semibold uppercase tracking-wider">Node.js</span>
+              <span>April 24, 2026</span>
+            </div>
+            <h3 class="font-display text-xl font-semibold mb-3 group-hover:text-azure transition-colors">
+              Securing APIs with JWT and Refresh Tokens
+            </h3>
+            <p class="text-steel text-sm leading-relaxed mb-6 flex-grow">
+              An in-depth look at implementing silent refresh flows, blacklisting tokens inside Redis, and secure HttpOnly cookie storage strategies.
+            </p>
+            <div class="flex items-center justify-between mt-auto pt-4 border-t border-white/5">
+              <span class="text-xs text-white/60">7 min read</span>
+              <a href="#" class="text-azure text-sm font-semibold flex items-center gap-1 hover:text-white transition-colors">
+                Read Article <i class="fas fa-arrow-right text-xs group-hover:translate-x-1 transition-transform"></i>
+              </a>
+            </div>
+          </div>
+        </article>
+
+      </section>
+
+      <!-- Empty State -->
+      <div id="no-results" class="hidden text-center py-12">
+        <i class="fas fa-info-circle text-4xl text-steel mb-3"></i>
+        <p class="text-steel">No articles match your search or filter criteria.</p>
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="mt-12 sm:mt-16 w-full max-w-6xl mx-auto px-4 sm:px-6">
+      <div class="border-t border-white/10 py-10 grid grid-cols-1 md:grid-cols-3 gap-8 sm:gap-12 text-white">
+        <!-- About -->
+        <div>
+          <h3 class="text-lg sm:text-xl font-display mb-3">About MK Industry</h3>
+          <p class="text-steel text-xs sm:text-sm leading-relaxed">
+            Engineering robust backend solutions, security architectures, and scalable APIs that support modern, high-traffic consumer web applications.
+          </p>
+        </div>
+
+        <!-- Contact -->
+        <div>
+          <h3 class="text-lg sm:text-xl font-display mb-3">Contact</h3>
+          <p class="text-xs sm:text-sm text-steel">
+            <i class="fas fa-envelope mr-1.5"></i> mohdkaif8603@gmail.com
+          </p>
+          <p class="text-xs sm:text-sm text-steel mt-2">
+            <i class="fas fa-phone mr-1.5"></i> +91 9027114840
+          </p>
+          <p class="text-xs sm:text-sm text-steel mt-2">
+            <i class="fas fa-map-marker-alt mr-1.5"></i> Bijnor, Uttar Pradesh – 246701
+          </p>
+        </div>
+
+        <!-- Social Icons -->
+        <div>
+          <h3 class="text-lg sm:text-xl font-display mb-3">Follow Me</h3>
+          <div class="flex gap-4 mt-2">
+            <a href="https://github.com/Mohdkaif379" target="_blank"
+              class="w-10 h-10 flex items-center justify-center rounded-lg bg-slate-900 border border-white/5 hover:border-azure transition shadow-md">
+              <i class="fab fa-github text-white text-lg"></i>
+            </a>
+            <a href="https://www.linkedin.com/in/mohd-kaif-backend" target="_blank"
+              class="w-10 h-10 flex items-center justify-center rounded-lg bg-slate-900 border border-white/5 hover:border-azure transition shadow-md">
+              <i class="fab fa-linkedin text-white text-lg"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="border-t border-white/5 text-center py-6 text-xs text-steel">
+        © 2026 MK Industry (Mohd Kaif). All rights reserved.
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    // Mobile menu toggle
+    const mobileMenuBtn = document.getElementById("mobile-menu-btn");
+    const mobileMenu = document.getElementById("mobile-menu");
+    const closeMenuBtn = document.getElementById("close-menu");
+
+    if (mobileMenuBtn && mobileMenu) {
+      mobileMenuBtn.addEventListener("click", () => {
+        mobileMenu.classList.remove("hidden");
+      });
+    }
+
+    if (closeMenuBtn && mobileMenu) {
+      closeMenuBtn.addEventListener("click", () => {
+        mobileMenu.classList.add("hidden");
+      });
+    }
+
+    // Close menu when clicking on a link
+    const mobileMenuLinks = mobileMenu ? mobileMenu.querySelectorAll("a") : [];
+    mobileMenuLinks.forEach(link => {
+      link.addEventListener("click", () => {
+        mobileMenu.classList.add("hidden");
+      });
+    });
+
+    // Frontend Search & Category Filter Logic
+    const searchInput = document.getElementById("blog-search");
+    const categoryButtons = document.querySelectorAll(".category-btn");
+    const blogCards = document.querySelectorAll(".blog-card");
+    const noResults = document.getElementById("no-results");
+
+    let currentCategory = "all";
+    let searchQuery = "";
+
+    function filterBlogs() {
+      let visibleCount = 0;
+
+      blogCards.forEach(card => {
+        const category = card.getAttribute("data-category");
+        const title = card.querySelector("h3").textContent.toLowerCase();
+        const description = card.querySelector("p").textContent.toLowerCase();
+
+        const matchesCategory = currentCategory === "all" || category === currentCategory;
+        const matchesSearch = title.includes(searchQuery) || description.includes(searchQuery);
+
+        if (matchesCategory && matchesSearch) {
+          card.style.display = "flex";
+          visibleCount++;
+        } else {
+          card.style.display = "none";
+        }
+      });
+
+      if (visibleCount === 0) {
+        noResults.classList.remove("hidden");
+      } else {
+        noResults.classList.add("hidden");
+      }
+    }
+
+    // Search input handler
+    if (searchInput) {
+      searchInput.addEventListener("input", (e) => {
+        searchQuery = e.target.value.toLowerCase().trim();
+        filterBlogs();
+      });
+    }
+
+    // Category button handler
+    categoryButtons.forEach(btn => {
+      btn.addEventListener("click", (e) => {
+        // Toggle active styles
+        categoryButtons.forEach(b => {
+          b.classList.remove("active", "bg-azure", "text-white");
+          b.classList.add("bg-slate-900", "text-steel");
+        });
+
+        btn.classList.add("active", "bg-azure", "text-white");
+        btn.classList.remove("bg-slate-900", "text-steel");
+
+        currentCategory = btn.getAttribute("data-category");
+        filterBlogs();
+      });
+    });
+  </script>
+</body>
+
+</html>
