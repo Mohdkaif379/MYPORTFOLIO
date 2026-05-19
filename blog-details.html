@@ -1,0 +1,469 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <!-- Primary Meta Tags (fallback, will be overwritten by JS dynamically for SEO scrapers) -->
+  <title>Blog Details | MK Industry</title>
+  <meta name="description" content="Technical software engineering articles from MK Industry." />
+  <meta name="author" content="Mohd Kaif (MK Industry)" />
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            midnight: "#0a1126",
+            ocean: "#12204a",
+            azure: "#2f6df6",
+            mist: "#eef3ff",
+            steel: "#9bb0d6",
+          },
+          fontFamily: {
+            display: ["IBM Plex Serif", "ui-serif", "serif"],
+            body: ["Space Grotesk", "ui-sans-serif", "system-ui"],
+          },
+          backgroundImage: {
+            grid: "radial-gradient(circle at 1px 1px, rgba(238,243,255,0.07) 1px, transparent 0)",
+          },
+        },
+      },
+    };
+  </script>
+  <link
+    href="https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:wght@400;600;700&family=Space+Grotesk:wght@400;500;600&display=swap"
+    rel="stylesheet" />
+  <style>
+    html,
+    body {
+      overflow-y: auto !important;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+    }
+
+    html::-webkit-scrollbar,
+    body::-webkit-scrollbar {
+      width: 0;
+      height: 0;
+      display: none;
+    }
+
+    .glass {
+      background: rgba(18, 32, 74, 0.4);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    code {
+      font-family: monospace;
+      background-color: rgba(255, 255, 255, 0.05);
+      padding: 0.2rem 0.4rem;
+      border-radius: 0.25rem;
+      color: #3b82f6;
+    }
+    
+    pre code {
+      background-color: transparent;
+      padding: 0;
+      color: inherit;
+    }
+  </style>
+</head>
+
+<body class="bg-gradient-to-b from-slate-950 via-blue-950 to-slate-950 text-mist font-body min-h-screen">
+  <div class="relative z-10 min-h-screen bg-grid bg-[size:32px_32px]">
+    <!-- Header -->
+    <header class="fixed top-0 left-0 right-0 z-50 bg-gradient-to-b from-slate-950 via-blue-950 to-slate-950 py-6">
+      <nav class="max-w-6xl mx-auto px-6 flex items-center justify-between">
+        <button id="mobile-menu-btn" class="md:hidden text-white text-2xl" aria-label="Open menu">
+          <i class="fas fa-bars"></i>
+        </button>
+        <div class="hidden md:flex gap-6 text-sm uppercase tracking-[0.2em]">
+          <a class="hover:text-azure" href="index.html#home">Home</a>
+          <a class="hover:text-azure" href="index.html#about">About</a>
+          <a class="hover:text-azure" href="index.html#projects">Work</a>
+          <a class="hover:text-azure" href="index.html#skills">Stack</a>
+          <a class="hover:text-azure" href="index.html#experience">Experience</a>
+          <a class="hover:text-azure" href="index.html#education">Education</a>
+          <a class="hover:text-azure" href="index.html#contact">Contact</a>
+          <a class="hover:text-azure text-azure font-semibold" href="blog.html">Blog</a>
+        </div>
+        <div class="flex items-center gap-3">
+          <div
+            class="h-11 w-11 rounded-2xl bg-gradient-to-b from-slate-950 via-blue-900 to-blue-950 shadow-2xl text-white flex items-center justify-center font-semibold">
+            MKI
+          </div>
+          <div>
+            <div class="text-sm uppercase tracking-[0.3em] font-semibold">
+              MK Industry
+            </div>
+            <div class="text-xs text-white uppercase tracking-[0.2em]">
+              Mohd Kaif | Backend Developer
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="fixed inset-0 bg-slate-950 bg-opacity-95 z-40 hidden flex flex-col items-center justify-center space-y-6 text-white text-lg uppercase tracking-[0.2em]">
+      <a href="index.html#home" class="hover:text-azure">Home</a>
+      <a href="index.html#about" class="hover:text-azure">About</a>
+      <a href="index.html#projects" class="hover:text-azure">Work</a>
+      <a href="index.html#skills" class="hover:text-azure">Stack</a>
+      <a href="index.html#experience" class="hover:text-azure">Experience</a>
+      <a href="index.html#education" class="hover:text-azure">Education</a>
+      <a href="index.html#contact" class="hover:text-azure">Contact</a>
+      <a href="blog.html" class="hover:text-azure">Blog</a>
+      <button id="close-menu" class="absolute top-6 right-6 text-2xl" aria-label="Close menu"><i class="fas fa-times"></i></button>
+    </div>
+
+    <!-- Main Content Grid -->
+    <main class="max-w-6xl mx-auto px-4 sm:px-6 pb-16 pt-28">
+      
+      <!-- Back Button -->
+      <div class="mb-8">
+        <a href="blog.html" class="inline-flex items-center gap-2 text-white text-sm hover:text-azure transition-colors group">
+          <i class="fas fa-arrow-left group-hover:-translate-x-1 transition-transform"></i> Back to All Articles
+        </a>
+      </div>
+
+      <div class="grid lg:grid-cols-[1fr_350px] gap-12" id="article-view">
+        <!-- Main Article Container -->
+        <article class="p-6 md:p-8 rounded-3xl bg-slate-950/60 border border-white/10 glass">
+          <!-- Post Header -->
+          <header class="mb-8 pb-8 border-b border-white/10">
+            <div class="flex items-center gap-3 text-xs uppercase tracking-wider text-steel mb-4">
+              <span id="post-category" class="bg-azure/20 text-azure px-3 py-1 rounded-md font-semibold">Category</span>
+              <span id="post-date">Date</span>
+              <span>•</span>
+              <span id="post-read-time">Read Time</span>
+            </div>
+            <h1 id="post-title" class="font-display text-3xl sm:text-4xl md:text-5xl leading-tight text-white mb-4">
+              Article Title
+            </h1>
+            <div class="flex items-center gap-3 text-sm text-steel">
+              <div class="h-10 w-10 rounded-full bg-gradient-to-b from-slate-950 via-blue-900 to-blue-950 shadow-md text-white flex items-center justify-center font-semibold">
+                MK
+              </div>
+              <div>
+                <p class="font-semibold text-white">Mohd Kaif</p>
+                <p class="text-xs">Founder, MK Industry</p>
+              </div>
+            </div>
+          </header>
+
+          <!-- Post Body -->
+          <div id="post-body" class="prose prose-invert max-w-none text-white/90 leading-relaxed space-y-6 text-base sm:text-lg">
+            <!-- Dynamic Content -->
+          </div>
+        </article>
+
+        <!-- Sidebar / Sidebar widgets -->
+        <aside class="space-y-8">
+          <!-- About Card -->
+          <div class="p-6 rounded-2xl bg-gradient-to-b from-slate-950 via-blue-950 to-slate-950 border border-white/10">
+            <h3 class="font-display text-lg font-semibold text-white mb-3">About MK Industry</h3>
+            <p class="text-steel text-sm leading-relaxed mb-4">
+              MK Industry provides professional software development, focused on building highly secure, scalable, and optimized backend frameworks.
+            </p>
+            <a href="index.html#contact" class="text-white text-sm font-semibold hover:text-azure transition-colors inline-flex items-center gap-1">
+              Work with us <i class="fas fa-arrow-right text-xs"></i>
+            </a>
+          </div>
+
+          <!-- Suggested Articles Widget -->
+          <div class="p-6 rounded-2xl bg-gradient-to-b from-slate-950 via-blue-950 to-slate-950 border border-white/10">
+            <h3 class="font-display text-lg font-semibold text-white mb-4">Other Articles</h3>
+            <ul class="space-y-4" id="suggested-posts">
+              <!-- Dynamic suggestions -->
+            </ul>
+          </div>
+        </aside>
+      </div>
+
+      <!-- Error State -->
+      <div id="error-view" class="hidden text-center py-20">
+        <i class="fas fa-exclamation-triangle text-5xl text-red-500 mb-4"></i>
+        <h2 class="text-3xl font-display mb-2">Article Not Found</h2>
+        <p class="text-steel mb-8">The article you are looking for does not exist or has been moved.</p>
+        <a href="blog.html" class="bg-azure hover:bg-blue-600 text-white px-6 py-2.5 rounded-lg text-sm transition">
+          Return to Blog
+        </a>
+      </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="mt-12 sm:mt-16 w-full max-w-6xl mx-auto px-4 sm:px-6">
+      <div class="border-t border-white/10 py-10 grid grid-cols-1 md:grid-cols-3 gap-8 sm:gap-12 text-white">
+        <!-- About -->
+        <div>
+          <h3 class="text-lg sm:text-xl font-display mb-3">About MK Industry</h3>
+          <p class="text-steel text-xs sm:text-sm leading-relaxed">
+            Engineering robust backend solutions, security architectures, and scalable APIs that support modern, high-traffic consumer web applications.
+          </p>
+        </div>
+
+        <!-- Contact -->
+        <div>
+          <h3 class="text-lg sm:text-xl font-display mb-3">Contact</h3>
+          <p class="text-xs sm:text-sm text-steel">
+            <i class="fas fa-envelope mr-1.5"></i> mohdkaif8603@gmail.com
+          </p>
+          <p class="text-xs sm:text-sm text-steel mt-2">
+            <i class="fas fa-phone mr-1.5"></i> +91 9027114840
+          </p>
+          <p class="text-xs sm:text-sm text-steel mt-2">
+            <i class="fas fa-map-marker-alt mr-1.5"></i> Bijnor, Uttar Pradesh – 246701
+          </p>
+        </div>
+
+        <!-- Social Icons -->
+        <div>
+          <h3 class="text-lg sm:text-xl font-display mb-3">Follow Me</h3>
+          <div class="flex gap-4 mt-2">
+            <a href="https://github.com/Mohdkaif379" target="_blank"
+              class="w-10 h-10 flex items-center justify-center rounded-lg bg-slate-900 border border-white/5 hover:border-azure transition shadow-md">
+              <i class="fab fa-github text-white text-lg"></i>
+            </a>
+            <a href="https://www.linkedin.com/in/mohd-kaif-backend" target="_blank"
+              class="w-10 h-10 flex items-center justify-center rounded-lg bg-slate-900 border border-white/5 hover:border-azure transition shadow-md">
+              <i class="fab fa-linkedin text-white text-lg"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="border-t border-white/5 text-center py-6 text-xs text-steel">
+        © 2026 MK Industry (Mohd Kaif). All rights reserved.
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    // Mobile menu toggle
+    const mobileMenuBtn = document.getElementById("mobile-menu-btn");
+    const mobileMenu = document.getElementById("mobile-menu");
+    const closeMenuBtn = document.getElementById("close-menu");
+
+    if (mobileMenuBtn && mobileMenu) {
+      mobileMenuBtn.addEventListener("click", () => {
+        mobileMenu.classList.remove("hidden");
+      });
+    }
+
+    if (closeMenuBtn && mobileMenu) {
+      closeMenuBtn.addEventListener("click", () => {
+        mobileMenu.classList.add("hidden");
+      });
+    }
+
+    // Close menu when clicking on a link
+    const mobileMenuLinks = mobileMenu ? mobileMenu.querySelectorAll("a") : [];
+    mobileMenuLinks.forEach(link => {
+      link.addEventListener("click", () => {
+        mobileMenu.classList.add("hidden");
+      });
+    });
+
+    // Dynamic Article Database
+    const articles = {
+      "1": {
+        title: "Optimizing Express APIs for Production Scale",
+        category: "Node.js",
+        date: "May 19, 2026",
+        readTime: "5 min read",
+        body: `
+          <p>Express.js is one of the most popular minimalist web frameworks for Node.js. However, building Express APIs that can reliably scale to handle millions of requests requires mindful design patterns and performance configurations. Below, we discuss core strategies we use at <strong>MK Industry</strong> to scale Express applications in production environments.</p>
+
+          <h2 class="text-xl sm:text-2xl font-bold text-white mt-8 mb-4">1. Use Clustering to Leverage Multi-Core CPUs</h2>
+          <p>By default, Node.js runs on a single thread. This means that even if you deploy your application on an expensive server with 8 CPU cores, Express will only utilize a single core. To fix this, implement the Node.js Cluster module or a process manager like <strong>PM2</strong>.</p>
+          <pre class="bg-slate-900 text-steel p-4 rounded-xl border border-white/5 overflow-x-auto my-4"><code class="text-xs sm:text-sm text-sky-400">pm2 start server.js -i max</code></pre>
+          <p>Running in cluster mode automatically forks multiple instances of your Node web app, load balancing incoming HTTP traffic across all CPU cores.</p>
+
+          <h2 class="text-xl sm:text-2xl font-bold text-white mt-8 mb-4">2. Manage Database Connection Pools Efficiently</h2>
+          <p>Opening and closing SQL database connections on every incoming request is extremely expensive. It creates database overhead and slows down API response times. Always maintain a shared Connection Pool (e.g., using Knex, Sequelize, or Mongoose's built-in pool settings).</p>
+          <pre class="bg-slate-900 text-steel p-4 rounded-xl border border-white/5 overflow-x-auto my-4"><code class="text-xs sm:text-sm text-sky-400">// Example Knex Connection Pool Configuration
+const db = knex({
+  client: 'mysql2',
+  connection: { ... },
+  pool: { min: 2, max: 10 }
+});</code></pre>
+
+          <h2 class="text-xl sm:text-2xl font-bold text-white mt-8 mb-4">3. Enable Gzip Compression</h2>
+          <p>Response payloads can consume significant network bandwidth. You can dramatically reduce download sizes by enabling Gzip or Brotli compression. For Express, you can instantly integrate the <code>compression</code> middleware:</p>
+          <pre class="bg-slate-900 text-steel p-4 rounded-xl border border-white/5 overflow-x-auto my-4"><code class="text-xs sm:text-sm text-sky-400">const compression = require('compression');
+const express = require('express');
+const app = express();
+
+app.use(compression());</code></pre>
+
+          <h2 class="text-xl sm:text-2xl font-bold text-white mt-8 mb-4">Conclusion</h2>
+          <p>By using processes clustering, implementing connection pools, compressing assets, and caching repeated read query outputs with Redis, you can turn an ordinary Express web server into a blazing-fast microservice ready for peak workloads.</p>
+        `
+      },
+      "2": {
+        title: "MySQL Indexing Strategies You Must Know",
+        category: "Databases",
+        date: "May 10, 2026",
+        readTime: "8 min read",
+        body: `
+          <p>In database systems, index management is the single most important factor determining whether query response times remain constant as data grows or slow to a crawl. At <strong>MK Industry</strong>, we structure and review database indexing regularly to maintain sub-second APIs. Here is an overview of essential MySQL indexing strategies.</p>
+
+          <h2 class="text-xl sm:text-2xl font-bold text-white mt-8 mb-4">1. Understanding B-Tree Indexes</h2>
+          <p>MySQL (specifically InnoDB) organizes indexes using B-Trees. A B-Tree structure allows MySQL to quickly find rows matching keys in logarithmic time, rather than performing a full table scan. In a table of 1 million records, finding a row with an index requires just about 3-4 traversal operations, whereas without an index it would scan all 1,000,000 records.</p>
+
+          <h2 class="text-xl sm:text-2xl font-bold text-white mt-8 mb-4">2. The Power of Composite Indexes</h2>
+          <p>A composite (multi-column) index is an index built on multiple columns, e.g., <code>INDEX(user_id, status)</code>. When writing composite indexes, remember the <strong>Leftmost Prefix Rule</strong>. MySQL can use a composite index only if the query constraints match the columns in the index from left to right.
+          For instance, if your index is <code>(user_id, status)</code>:</p>
+          <ul class="list-disc pl-6 space-y-2 my-4">
+            <li><code>WHERE user_id = 5</code> <strong>(Uses Index)</strong></li>
+            <li><code>WHERE user_id = 5 AND status = 'active'</code> <strong>(Uses Index)</strong></li>
+            <li><code>WHERE status = 'active'</code> <strong>(Does NOT use Index)</strong></li>
+          </ul>
+
+          <h2 class="text-xl sm:text-2xl font-bold text-white mt-8 mb-4">3. Analyze Queries Using EXPLAIN</h2>
+          <p>Never guess whether your query is using an index. Always prepend your query with <code>EXPLAIN</code> in your console or database dashboard:</p>
+          <pre class="bg-slate-900 text-steel p-4 rounded-xl border border-white/5 overflow-x-auto my-4"><code class="text-xs sm:text-sm text-sky-400">EXPLAIN SELECT * FROM orders WHERE user_id = 5 AND status = 'completed';</code></pre>
+          <p>Look at the <code>type</code> and <code>key</code> columns in the explain output. You want to see <code>ref</code> or <code>const</code> instead of <code>ALL</code> (which signifies a slow full table scan).</p>
+
+          <h2 class="text-xl sm:text-2xl font-bold text-white mt-8 mb-4">Conclusion</h2>
+          <p>Adding too many indexes can slow down write performance (INSERTs/UPDATEs) because the indexes must be rebuilt. Find the right balance by matching your indexing strategy directly to your application's read paths.</p>
+        `
+      },
+      "3": {
+        title: "Real-time Notifications with Laravel & Firebase",
+        category: "Laravel",
+        date: "May 02, 2026",
+        readTime: "6 min read",
+        body: `
+          <p>Modern applications require immediate feedback channels. Whether alerting users to order statuses, messaging, or admin updates, integrating Firebase Cloud Messaging (FCM) within a backend system ensures swift notification deliveries. In this post, we'll look at the architectural approach we use at <strong>MK Industry</strong> to configure Laravel to trigger push notifications.</p>
+
+          <h2 class="text-xl sm:text-2xl font-bold text-white mt-8 mb-4">1. Store FCM Device Tokens</h2>
+          <p>Before you can target a specific user, they must register their device token with the backend. Build a simple registration API endpoint where the frontend posts their current device token upon login or permission consent, and store this inside a <code>fcm_tokens</code> database table linked to their user/vendor accounts.</p>
+
+          <h2 class="text-xl sm:text-2xl font-bold text-white mt-8 mb-4">2. Setup the Firebase Admin SDK in Laravel</h2>
+          <p>Laravel can communicate with Firebase's REST APIs directly or via wrapper libraries such as <code>kreait/laravel-firebase</code>. Load your Google Service Account configuration JSON key inside your <code>.env</code> file:</p>
+          <pre class="bg-slate-900 text-steel p-4 rounded-xl border border-white/5 overflow-x-auto my-4"><code class="text-xs sm:text-sm text-sky-400">FIREBASE_CREDENTIALS=/path/to/service-account.json</code></pre>
+
+          <h2 class="text-xl sm:text-2xl font-bold text-white mt-8 mb-4">3. Fire Notifications Asynchronously via Queues</h2>
+          <p>Never block the main thread waiting for external requests to Firebase API servers. Doing so can cause slow response times for users. Instead, trigger notifications inside a queued Laravel job:</p>
+          <pre class="bg-slate-900 text-steel p-4 rounded-xl border border-white/5 overflow-x-auto my-4"><code class="text-xs sm:text-sm text-sky-400">class SendPushNotification implements ShouldQueue
+{
+    use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
+
+    protected $token;
+    protected $title;
+    protected $body;
+
+    public function handle(Messaging $messaging)
+    {
+        $message = CloudMessage::withTarget('token', $this->token)
+            ->withNotification(Notification::create($this->title, $this->body));
+            
+        $messaging->send($message);
+    }
+}</code></pre>
+
+          <h2 class="text-xl sm:text-2xl font-bold text-white mt-8 mb-4">Conclusion</h2>
+          <p>Integrating push notifications utilizing database-driven queues makes Laravel applications highly resilient and responsive while providing seamless real-time notifications to the client.</p>
+        `
+      },
+      "4": {
+        title: "Securing APIs with JWT and Refresh Tokens",
+        category: "Node.js",
+        date: "April 24, 2026",
+        readTime: "7 min read",
+        body: `
+          <p>JSON Web Tokens (JWT) are widely adopted for stateless API authentication. However, simply using a single long-lived access token is a major security risk. At <strong>MK Industry</strong>, we implement a robust dual-token system using Access Tokens and Refresh Tokens. This guide details how this mechanism works.</p>
+
+          <h2 class="text-xl sm:text-2xl font-bold text-white mt-8 mb-4">1. The Architecture of Dual-Token Authentication</h2>
+          <p>Instead of a single token, our login API issues two distinct tokens:</p>
+          <ul class="list-disc pl-6 space-y-2 my-4">
+            <li><strong>Access Token:</strong> Short lifetime (e.g., 15 minutes). Used to authenticate API requests. Kept in-memory in the client application.</li>
+            <li><strong>Refresh Token:</strong> Long lifetime (e.g., 7 days). Used to request a new access token when the original one expires. Stored securely in a secure cookie.</li>
+          </ul>
+
+          <h2 class="text-xl sm:text-2xl font-bold text-white mt-8 mb-4">2. Securing the Refresh Token</h2>
+          <p>Storing refresh tokens in localStorage makes them vulnerable to Cross-Site Scripting (XSS) attacks. The safest method is saving them inside an <strong>HttpOnly, Secure, SameSite=Strict</strong> Cookie.</p>
+          <pre class="bg-slate-900 text-steel p-4 rounded-xl border border-white/5 overflow-x-auto my-4"><code class="text-xs sm:text-sm text-sky-400">res.cookie('refreshToken', token, {
+  httpOnly: true,
+  secure: true, // Only sent over HTTPS
+  sameSite: 'Strict',
+  maxAge: 7 * 24 * 60 * 60 * 1000 // 7 days
+});</code></pre>
+          <p>This prevents client-side Javascript scripts from accessing the refresh token, completely shielding it from malicious code.</p>
+
+          <h2 class="text-xl sm:text-2xl font-bold text-white mt-8 mb-4">3. Refreshing the Token Dynamically</h2>
+          <p>When the access token expires, the client's API client (like Axios) intercepts the <code>401 Unauthorized</code> response and calls the <code>/refresh</code> endpoint automatically behind the scenes to request a new access token. If the refresh token is valid, the server replies with a new access token, and the client retries the original request seamlessly.</p>
+
+          <h2 class="text-xl sm:text-2xl font-bold text-white mt-8 mb-4">Conclusion</h2>
+          <p>A dual-token system ensures your API security profile remains exceptionally high, keeping long-lived credentials locked in secure cookies while maintaining stateless and scale-friendly architecture.</p>
+        `
+      }
+    };
+
+    // Load Article Content
+    function loadArticle() {
+      const params = new URLSearchParams(window.location.search);
+      const articleId = params.get("id");
+
+      const article = articles[articleId];
+
+      if (!article) {
+        document.getElementById("article-view").classList.add("hidden");
+        document.getElementById("error-view").classList.remove("hidden");
+        document.title = "Article Not Found | MK Industry";
+        return;
+      }
+
+      // Populate Article
+      document.getElementById("post-category").textContent = article.category;
+      document.getElementById("post-date").textContent = article.date;
+      document.getElementById("post-read-time").textContent = article.readTime;
+      document.getElementById("post-title").textContent = article.title;
+      document.getElementById("post-body").innerHTML = article.body;
+      document.title = `${article.title} | MK Industry`;
+
+      // Set category styling
+      const categoryEl = document.getElementById("post-category");
+      if (article.category === "Node.js") {
+        categoryEl.className = "bg-azure/20 text-azure px-3 py-1 rounded-md font-semibold";
+      } else if (article.category === "Databases") {
+        categoryEl.className = "bg-emerald-500/20 text-emerald-400 px-3 py-1 rounded-md font-semibold";
+      } else if (article.category === "Laravel") {
+        categoryEl.className = "bg-red-500/20 text-red-400 px-3 py-1 rounded-md font-semibold";
+      }
+
+      // Populate Suggested Posts
+      const suggestionsContainer = document.getElementById("suggested-posts");
+      suggestionsContainer.innerHTML = "";
+
+      Object.keys(articles).forEach(key => {
+        if (key !== articleId) {
+          const item = articles[key];
+          const li = document.createElement("li");
+          li.innerHTML = `
+            <a href="blog-details.html?id=${key}" class="group block">
+              <span class="text-xs text-azure uppercase font-semibold tracking-wider">${item.category}</span>
+              <h4 class="text-sm font-semibold text-white/80 group-hover:text-azure transition-colors mt-0.5">${item.title}</h4>
+            </a>
+          `;
+          suggestionsContainer.appendChild(li);
+        }
+      });
+    }
+
+    // Initialize
+    loadArticle();
+  </script>
+</body>
+
+</html>
